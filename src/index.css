@@ -1,3 +1,82 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Pull to refresh animation */
+.ptr-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #aaa;
+  text-align: center;
+  transform: translate3d(0, -100%, 0);
+}
+
+/* Message animations */
+@keyframes message-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-animation {
+  animation: message-in 0.3s ease-out;
+}
+
+/* Status indicators */
+.status-indicator {
+  position: relative;
+}
+
+.status-indicator::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.status-online::after {
+  background-color: #10B981;
+}
+
+.status-away::after {
+  background-color: #F59E0B;
+}
+
+.status-offline::after {
+  background-color: #6B7280;
+}
+
+/* Touch-friendly improvements */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Native-like momentum scrolling */
+.momentum-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
