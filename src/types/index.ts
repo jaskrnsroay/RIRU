@@ -115,13 +115,11 @@ export interface Message {
   senderId: string;
   content: string;
   timestamp: Date;
-  edited: boolean;
-  reactions: Reaction[];
-  attachments: Media[];
-  replyTo?: string;
-  mentions: string[];
-  formatting?: MessageFormatting;
-  voiceMessage?: VoiceMessage;
+  isEncrypted: boolean;
+  selfDestruct: boolean;
+  selfDestructTime?: number;
+  isTranslated: boolean;
+  isDeleted: boolean;
 }
 
 export interface MessageFormatting {
@@ -144,10 +142,21 @@ export interface Reaction {
   timestamp: Date;
 }
 
-// src/types/chat.ts
-export interface ChatRoomType {
+export interface ChatRoom {
   id: string;
   name: string;
+  description: string;
+  type: ChatRoomType;
   participants: string[];
+  tags: string[];
+  createdAt: Date;
+  isModerated: boolean;
   messages: Message[];
+}
+
+export enum ChatRoomType {
+  Direct = 'direct',
+  Group = 'group',
+  Anonymous = 'anonymous',
+  Topic = 'topic'
 }
